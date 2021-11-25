@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "236232584201",
+    "project_id": "quit-smoking-ffce6",
+    "storage_bucket": "quit-smoking-ffce6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236232584201:android:42f795da7e898ddb32dcd8",
+        "android_client_info": {
+          "package_name": "com.qc.quit_smoking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236232584201-pu8fnfls7l4h8778rc1tmovjv11f5r8g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.qc.quit_smoking",
+            "certificate_hash": "acb621a300b862d90275c0fc49a9a714861dc140"
+          }
+        },
+        {
+          "client_id": "236232584201-c9ikt0kg5dh820s0mt79n8afaq4e93q3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHhm9LcKLYCMarASWo4XiGSwMHldqpLzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236232584201-c9ikt0kg5dh820s0mt79n8afaq4e93q3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
