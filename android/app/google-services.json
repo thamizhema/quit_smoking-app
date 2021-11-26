@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:236232584201:android:42f795da7e898ddb32dcd8",
+        "mobilesdk_app_id": "1:236232584201:android:54c2a448a614a6b832dcd8",
         "android_client_info": {
           "package_name": "com.qc.quit_smoking"
         }
       },
       "oauth_client": [
         {
-          "client_id": "236232584201-pu8fnfls7l4h8778rc1tmovjv11f5r8g.apps.googleusercontent.com",
+          "client_id": "236232584201-j5ji1orlgqdos53d50rtse9lloh8svmo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.qc.quit_smoking",
