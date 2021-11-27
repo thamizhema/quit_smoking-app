@@ -3,6 +3,10 @@ import 'package:get_storage/get_storage.dart';
 
 class UserInfoController extends GetxController {
   final userInfo = {}.obs;
+  final pageIndex = 0.obs;
+  void setPageIndex(index) {
+    pageIndex(index);
+  }
 
   void updateUserInfo(Map userDetails) {
     userInfo.addAll(userDetails);

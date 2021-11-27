@@ -44,6 +44,8 @@ dependencies:
   get: ^4.3.8
   get_storage: ^2.0.3
   material_design_icons_flutter: ^5.0.6295
+  syncfusion_flutter_datepicker: ^19.3.55
+  flutter_switch: ^0.3.2
 
 
 
