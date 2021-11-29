@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Data%20Collection/content_title.dart';
 import 'package:quit_smoking/Data%20Collection/date_time_toggle.dart';
 import 'package:quit_smoking/Data%20Collection/time_selector.dart';
+import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -15,26 +17,20 @@ class SyncfutionDatePicker extends StatefulWidget {
 }
 
 class _SyncfutionDatePickerState extends State<SyncfutionDatePicker> {
-  final sessionData = GetStorage();
+  final UserInfoController _userInfoController = Get.find<UserInfoController>();
+
   bool isDate = true;
   DateTime selectedDate = DateTime.now();
   DateTime quitDate = DateTime.now();
   bool isAm = DateTime.now().hour < 12;
   double hours = DateTime.now().hour % 12 == 0 ? 12 : DateTime.now().hour % 12;
   double minutes = DateTime.now().minute.toDouble();
-  late Map userInfo;
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    userInfo = sessionData.read('userInfo');
-  }
-
   @override
   Widget build(BuildContext context) {
     return FittedBox(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             ContentTitle(
@@ -47,7 +43,8 @@ class _SyncfutionDatePickerState extends State<SyncfutionDatePicker> {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 // height: 370,
                 width: context.screenWidth / 1.2,
                 color: Colors.green[100],
@@ -93,7 +90,7 @@ class _SyncfutionDatePickerState extends State<SyncfutionDatePicker> {
                         ],
                       ),
                       isDate
-                          ? Container(
+                          ? SizedBox(
                               height: 300,
                               child: SfDateRangePicker(
                                 showNavigationArrow: false,
@@ -149,9 +146,12 @@ class _SyncfutionDatePickerState extends State<SyncfutionDatePicker> {
                                         (hours + 12).toStringAsFixed(0)),
                                 int.parse(minutes.toStringAsFixed(0)),
                               );
-                              userInfo['quitDate'] = quitDate.toString();
-                              sessionData.write('userInfo', userInfo);
-                              print(userInfo);
+
+                              _userInfoController.updateUserInfo(
+                                  {'quitDate': quitDate.toString()});
+                              _userInfoController.pageController.value.nextPage(
+                                  duration: const Duration(milliseconds: 800),
+                                  curve: Curves.ease);
                             },
                             child: const Text('save').text.bold.size(20).make(),
                             textColor: Colors.white,

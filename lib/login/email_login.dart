@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Common/buttons.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Common/textfield.dart';
+import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -75,6 +76,24 @@ class _EmailLoginState extends State<EmailLogin> {
       userSession.write("isLogged", true);
       userSession.write("userInfo", updateUserInfo);
       Get.offAll(OnBording(), transition: Transition.cupertino);
+      userSession.write('isLogged', true);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      VxToast.show(context,
+          msg: e.message.toString(), position: VxToastPosition.top);
+    }
+  }
+
+  logInWithEmailPassword() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _email.text, password: _password.text);
+      userSession.write('isLogged', true);
+      if (!smoked) {
+        Get.offAll(SmokeFreeTime(), transition: Transition.cupertino);
+      } else {
+        Get.offAll(OnBording(), transition: Transition.cupertino);
+      }
     } on FirebaseAuthException catch (e) {
       print(e.message);
       VxToast.show(context,
@@ -199,6 +218,8 @@ class _EmailLoginState extends State<EmailLogin> {
                         if (validation()) {
                           createEmailAuth(context);
                         }
+                      } else {
+                        logInWithEmailPassword();
                       }
                     }),
                   ),
