@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Common/buttons.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Common/textfield.dart';
+import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
@@ -88,9 +89,22 @@ class _EmailLoginState extends State<EmailLogin> {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _email.text, password: _password.text);
-      userSession.write('isLogged', true);
+
       if (!smoked) {
-        Get.offAll(SmokeFreeTime(), transition: Transition.cupertino);
+        final checkUser = await _firestore.collection("User").get();
+        Map getUserData = {};
+        for (var i in checkUser.docs) {
+          if (i['email'] == _email.text) {
+            getUserData = i.data();
+            Timestamp date = i['quitDate'][i['quitDate'].length - 1];
+            DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
+                date.microsecondsSinceEpoch);
+            getUserData['quitDate'] = quitDate.toString();
+            userSession.write('userInfo', getUserData);
+            userSession.write('isLogged', true);
+          }
+        }
+        Get.offAll(Dashboard(), transition: Transition.cupertino);
       } else {
         Get.offAll(OnBording(), transition: Transition.cupertino);
       }

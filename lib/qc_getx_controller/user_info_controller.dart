@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
 
 class UserInfoController extends GetxController {
@@ -12,7 +13,7 @@ class UserInfoController extends GetxController {
   final pageIndex = 0.obs;
   final dataCollection = false.obs;
   final quitReason = [].obs;
-  final isSetDate = false.obs;
+  // final isSetDate = false.obs;
   final pageController = PageController().obs;
   final ourUser = false.obs;
 
@@ -46,18 +47,15 @@ class UserInfoController extends GetxController {
     quitReason.remove(reason);
   }
 
-  setIsQuitDate(bool dateFixed) {
-    isSetDate(dateFixed);
-  }
-
   Map<String, dynamic> userInformation({isDb = true}) {
     DateTime quitDate =
         DateTime.parse(userInfo.value['quitDate'] ?? DateTime.now().toString());
+
     return {
       'email': userInfo['email'],
       'username': userInfo['username'],
       if (isDb) 'quitDate': [quitDate],
-      if (!isDb) 'quitDate': currentQuitDate.toString(),
+      if (!isDb) 'quitDate': quitDate.toString(),
       'dayOfCigarette': userInfo['dayOfCigarette'] ?? 1,
       'packOfCigarettes': userInfo['packOfCigarettes'] ?? 10,
       'priceOfPack': userInfo['priceOfPack'] ?? 100,
@@ -65,7 +63,7 @@ class UserInfoController extends GetxController {
       'quitReason': userInfo['quitReason'].length == 0
           ? ['Other']
           : userInfo['quitReason'],
-      'relapsed': 0,
+      'relapsedCount': 0,
     };
   }
 
@@ -77,7 +75,7 @@ class UserInfoController extends GetxController {
           .set(userInformation(isDb: true));
       getStorage.write('userInfo', userInformation(isDb: false));
       getStorage.write('isLogged', true);
-      Get.offAll(SmokeFreeTime());
+      Get.offAll(Dashboard());
     } catch (e) {
       print('error data ................... $e');
     }

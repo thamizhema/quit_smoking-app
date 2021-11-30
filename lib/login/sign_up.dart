@@ -8,18 +8,20 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:quit_smoking/Common/buttons.dart';
 import 'package:quit_smoking/Common/colors.dart';
+import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
 import 'package:quit_smoking/Data%20Collection/welcome_page.dart';
 import 'package:quit_smoking/login/email_login.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SignUp extends StatelessWidget {
   UserInfoController _userInfoController = Get.find<UserInfoController>();
   final getStorage = GetStorage();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  void signinWithFacebook() async {
+  void signinWithFacebook(BuildContext context) async {
     try {
       LoginResult loginResult = await FacebookAuth.instance.login();
       final userData = await FacebookAuth.instance.getUserData();
@@ -39,26 +41,47 @@ class SignUp extends StatelessWidget {
       getStorage.write("userInfo", updateUserInfo);
 
       final checkUser = await _firestore.collection("User").get();
+      Map getUserData = {};
       bool isCompleted = false;
       for (var i in checkUser.docs) {
         if (i['email'] == updateUserInfo['email']) {
           isCompleted = true;
+          getUserData = i.data();
+          Timestamp date = i['quitDate'][i['relapsedCount']];
+          DateTime quitDate =
+              DateTime.fromMicrosecondsSinceEpoch(date.microsecondsSinceEpoch);
+          getUserData['quitDate'] = quitDate.toString();
+          getStorage.write('userInfo', getUserData);
         }
       }
-
+      getStorage.write('isLogged', true);
       if (isCompleted) {
-        Get.offAll(SmokeFreeTime(), transition: Transition.cupertino);
+        VxDialog.showConfirmation(
+          context,
+          content: "welcome",
+          title: 'Did you Smoked',
+          confirm: 'Yes',
+          cancel: "No",
+          onCancelPress: () {
+            getStorage.write('isLogged', true);
+            Get.offAll(Dashboard(), transition: Transition.cupertino);
+          },
+          onConfirmPress: () {
+            getStorage.write('isLogged', true);
+            Get.offAll(OnBording(), transition: Transition.cupertino);
+          },
+        );
       } else {
+        getStorage.write('isLogged', true);
         Get.offAll(OnBording(), transition: Transition.cupertino);
       }
-      getStorage.write('isLogged', true);
     } catch (e) {
       print('error ===================================');
       print(e);
     }
   }
 
-  void signinWithGoogle() async {
+  void signinWithGoogle(BuildContext context) async {
     try {
       final googleSignin = GoogleSignIn();
       final googleUser = await googleSignin.signIn();
@@ -79,19 +102,40 @@ class SignUp extends StatelessWidget {
 
       getStorage.write("userInfo", updateUserInfo);
       final checkUser = await _firestore.collection("User").get();
+      Map getUserData = {};
       bool isCompleted = false;
       for (var i in checkUser.docs) {
         if (i['email'] == updateUserInfo['email']) {
           isCompleted = true;
+          getUserData = i.data();
+          Timestamp date = i['quitDate'][i['relapsedCount']];
+          DateTime quitDate =
+              DateTime.fromMicrosecondsSinceEpoch(date.microsecondsSinceEpoch);
+          getUserData['quitDate'] = quitDate.toString();
+          getStorage.write('userInfo', getUserData);
         }
       }
 
       if (isCompleted) {
-        Get.offAll(SmokeFreeTime(), transition: Transition.cupertino);
+        VxDialog.showConfirmation(
+          context,
+          content: "welcome",
+          title: 'Did you Smoked',
+          confirm: 'Yes',
+          cancel: "No",
+          onCancelPress: () {
+            getStorage.write('isLogged', true);
+            Get.offAll(Dashboard(), transition: Transition.cupertino);
+          },
+          onConfirmPress: () {
+            getStorage.write('isLogged', true);
+            Get.offAll(OnBording(), transition: Transition.cupertino);
+          },
+        );
       } else {
+        getStorage.write('isLogged', true);
         Get.offAll(OnBording(), transition: Transition.cupertino);
       }
-      getStorage.write('isLogged', true);
     } catch (e) {
       print('google sign error ======================');
       print(e);
@@ -135,7 +179,7 @@ class SignUp extends StatelessWidget {
                         iconImage: "images/google_logo.png",
                         buttonName: "Sign with Google     ",
                         onPressed: () {
-                          signinWithGoogle();
+                          signinWithGoogle(context);
                         },
                       ),
                       SignUpButtons(
@@ -144,7 +188,7 @@ class SignUp extends StatelessWidget {
                         textColor: OurColors.mainTextColor,
                         buttonName: "Sign with Facebook",
                         onPressed: () {
-                          signinWithFacebook();
+                          signinWithFacebook(context);
                         },
                       ),
                     ],

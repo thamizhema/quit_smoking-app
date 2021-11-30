@@ -21,7 +21,7 @@ class OnBording extends StatefulWidget {
 }
 
 class _OnBordingState extends State<OnBording> {
-  final userData = GetStorage();
+  final getStorage = GetStorage();
 
   final UserInfoController _userInfoController = Get.find<UserInfoController>();
 
@@ -31,6 +31,12 @@ class _OnBordingState extends State<OnBording> {
     CigaretteInfo(),
     ReasonForQuit(),
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getStorage.write('isLogged', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,17 +85,6 @@ class _OnBordingState extends State<OnBording> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          TextButton(
-                              onPressed: () {
-                                print(_userInfoController.ourUser.value);
-                              },
-                              child: Text('userInfo')),
-                          TextButton(
-                              onPressed: () {
-                                userData.remove('isLogged');
-                                userData.remove('userInfo');
-                              },
-                              child: Text('Log out')),
                           Text(_userInfoController.pageIndex.value + 1 ==
                                       dataCollection.length
                                   ? "Finish"
