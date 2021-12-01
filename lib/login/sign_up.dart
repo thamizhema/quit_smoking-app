@@ -9,7 +9,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:quit_smoking/Common/buttons.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
-import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
+import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
 import 'package:quit_smoking/Data%20Collection/welcome_page.dart';
 import 'package:quit_smoking/login/email_login.dart';

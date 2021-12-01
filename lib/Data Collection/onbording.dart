@@ -7,8 +7,10 @@ import 'package:quit_smoking/Data%20Collection/cigratte_info.dart';
 import 'package:quit_smoking/Data%20Collection/reason_for_quit.dart';
 import 'package:quit_smoking/Data%20Collection/syncfution_datetime_picker.dart';
 import 'package:quit_smoking/Data%20Collection/welcome_page.dart';
-import 'package:quit_smoking/login.dart';
+import 'package:quit_smoking/practice.dart';
 import 'package:quit_smoking/login/sign_up.dart';
+import 'package:quit_smoking/qc_getx_controller/money_saved_controller.dart';
+import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -103,6 +105,8 @@ class _OnBordingState extends State<OnBording> {
                                     _userInfoController.quitReason.value
                               });
                               _userInfoController.addUserInfoToDb();
+                              // Get.lazyPut(() => SmokeFreeTimeController());
+                              // Get.lazyPut(() => MoneySavedController());
                             } else {
                               _userInfoController.pageController.value.nextPage(
                                   duration: const Duration(milliseconds: 800),

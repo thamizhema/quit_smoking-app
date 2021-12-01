@@ -7,7 +7,7 @@ import 'package:quit_smoking/Common/buttons.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Common/textfield.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
-import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
+import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:velocity_x/velocity_x.dart';

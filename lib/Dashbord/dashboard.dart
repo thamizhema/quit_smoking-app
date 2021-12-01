@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
+import 'package:quit_smoking/Dashbord/money_saved/money_saved.dart';
+import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -22,6 +20,7 @@ class _DashboardState extends State<Dashboard> {
 
   List<Widget> dashboardItems = [
     SmokeFreeTime(),
+    MoneySaved(),
   ];
 
   @override

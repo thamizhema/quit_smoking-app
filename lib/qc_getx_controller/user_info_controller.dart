@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
-import 'package:quit_smoking/Dashbord/smoke_free_time.dart';
+import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 
 class UserInfoController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;

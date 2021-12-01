@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quit_smoking/Dashbord/smoke_free_full_time.dart';
+import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_full_time.dart';
 import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
