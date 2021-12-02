@@ -65,8 +65,6 @@ class SmokeFreeTimeController extends GetxController {
     DateTime getQuitDate =
         DateTime.parse(getStorage.read('userInfo')['quitDate']);
     setQuitDate(getQuitDate);
-    print(quitDate);
-    print(quitDate.value.runtimeType);
     startTimer();
   }
 }

@@ -6,6 +6,8 @@ import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'health_improvement/health_improvement.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
@@ -20,6 +22,7 @@ class _DashboardState extends State<Dashboard> {
 
   List<Widget> dashboardItems = [
     SmokeFreeTime(),
+    HealthImprovement(),
     MoneySaved(),
   ];
 
