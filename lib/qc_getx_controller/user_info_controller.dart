@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
+import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
 
 class UserInfoController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -75,7 +76,7 @@ class UserInfoController extends GetxController {
           .set(userInformation(isDb: true));
       getStorage.write('userInfo', userInformation(isDb: false));
       getStorage.write('isLogged', true);
-      Get.offAll(Dashboard());
+      Get.offAll(CustomBottomNavigationBar());
     } catch (e) {
       print('error data ................... $e');
     }

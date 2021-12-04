@@ -48,6 +48,7 @@ dependencies:
   flutter_switch: ^0.3.2
   percent_indicator: ^3.4.0
   connectivity: ^3.0.6
+  curved_navigation_bar: ^1.0.1
 
 
 

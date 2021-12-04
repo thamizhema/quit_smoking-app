@@ -40,7 +40,7 @@ class ImprovementWidget extends StatelessWidget {
           progressColor: OurColors.mainColor,
           backgroundColor: OurColors.secondaryColor,
           circularStrokeCap: CircularStrokeCap.round,
-          animation: true,
+          animation: false,
           center: Text(
               '${((totalMinutesOrDays * 100) / calculationTime).toStringAsFixed(0)}%'),
           // Text(
@@ -56,26 +56,30 @@ class AllImprovement extends StatelessWidget {
     this.title = 'title',
     this.calculationTime = 0,
     this.totalMinutesOrDays = 0,
+    this.footer = '',
   }) : super(key: key);
 
   String title;
   int totalMinutesOrDays;
   int calculationTime;
+  String footer;
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
-            radius: 100.0,
-            percent: ((totalMinutesOrDays * 100) / calculationTime) / 100,
-            lineWidth: 8.0,
-            progressColor: OurColors.mainColor,
-            backgroundColor: OurColors.secondaryColor,
-            circularStrokeCap: CircularStrokeCap.round,
-            animation: true,
-            center: Text(
-                '${((totalMinutesOrDays * 100) / calculationTime).toStringAsFixed(0)}%'),
-            // Text(
-            //     '${totalMinutesOrDays > calculationTime ? '100' : ((calculationTime / 100) * totalMinutesOrDays).toString()}%'),
-            footer: title.text.center.lineHeight(3).ellipsis.makeCentered())
+      radius: 100.0,
+      percent: ((totalMinutesOrDays * 100) / calculationTime) / 100,
+      lineWidth: 8.0,
+      progressColor: OurColors.mainColor,
+      backgroundColor: OurColors.secondaryColor,
+      circularStrokeCap: CircularStrokeCap.round,
+      animation: false,
+      center: Text(
+          '${((totalMinutesOrDays * 100) / calculationTime).toStringAsFixed(0)}%'),
+      // Text(
+      //     '${totalMinutesOrDays > calculationTime ? '100' : ((calculationTime / 100) * totalMinutesOrDays).toString()}%'),
+      header: title.text.center.lineHeight(4).ellipsis.makeCentered(),
+      footer: footer.text.center.lineHeight(4).ellipsis.makeCentered(),
+    )
         .box
         .size(
           context.screenWidth / 1.5,

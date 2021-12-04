@@ -137,6 +137,7 @@ class HealthImprovementController extends GetxController {
         title: i['title'],
         calculationTime: i['isFinish'] ? 100 : i['calculationTime'],
         totalMinutesOrDays: i['isFinish'] ? 100 : i['totalMinutesOrDays'],
+        footer: i['description'],
       ));
     }
     improvementsAll(allIMap);

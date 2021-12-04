@@ -4,6 +4,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
+import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
+import 'package:quit_smoking/practice.dart';
+import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
+import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/health_improvement_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/money_saved_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
@@ -18,8 +22,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(UserInfoController());
-  // Get.put(MoneySavedController());
+  Get.put(BottomNavigationBarController());
+  // Get.put(AllInfoController());
   Get.lazyPut(() => SmokeFreeTimeController());
+  Get.lazyPut(() => AllInfoController());
   Get.lazyPut(() => MoneySavedController());
   Get.lazyPut(() => HealthImprovementController());
 
@@ -47,7 +53,7 @@ class MyApp extends StatelessWidget {
       ),
       home: isLogged && userInfo != null
           ? hasQuitDate != null
-              ? Dashboard()
+              ? CustomBottomNavigationBar()
               : OnBording()
           : SignUp(),
     );
