@@ -5,18 +5,37 @@ import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
+import 'package:quit_smoking/qc_getx_controller/mission_controller.dart';
 
 class UserInfoController extends GetxController {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final MissionController _missionController = Get.find<MissionController>();
   final getStorage = GetStorage();
   final currentQuitDate = DateTime.now().obs;
   final userInfo = {}.obs;
   final pageIndex = 0.obs;
   final dataCollection = false.obs;
   final quitReason = [].obs;
-  // final isSetDate = false.obs;
   final pageController = PageController().obs;
   final ourUser = false.obs;
+  List mission = [
+    {
+      "yourMission": 'day 1 mission',
+      "whyDoThis": 'day 1 why do this',
+      "notes": "",
+      'isCompleted': true,
+      'missionImage': 'imageLink',
+      'dayOfMission': 'Day 1',
+    },
+    {
+      "yourMission": 'day 2 mission',
+      "whyDoThis": 'day 2 why do this',
+      "notes": "",
+      'isCompleted': false,
+      'images': 'imageLink',
+      'dayOfMission': 'Day 2',
+    },
+  ];
 
   setCurrentQuitDate(quitdate) {
     currentQuitDate(quitdate);
@@ -74,9 +93,20 @@ class UserInfoController extends GetxController {
           .collection('User')
           .doc(userInfo['email'])
           .set(userInformation(isDb: true));
+
+      firestore
+          .collection('Missions')
+          .doc(userInfo['email'])
+          .set({"missions": mission});
+      final isNewUser = getStorage.read('missions');
+      if (isNewUser == null) {
+        getStorage.write('missions', mission);
+      }
+
       getStorage.write('userInfo', userInformation(isDb: false));
       getStorage.write('isLogged', true);
       Get.offAll(CustomBottomNavigationBar());
+      _missionController.getAllMissions();
     } catch (e) {
       print('error data ................... $e');
     }

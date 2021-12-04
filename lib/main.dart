@@ -9,6 +9,7 @@ import 'package:quit_smoking/practice.dart';
 import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/health_improvement_controller.dart';
+import 'package:quit_smoking/qc_getx_controller/mission_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/money_saved_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
@@ -21,9 +22,10 @@ void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(MissionController());
   Get.put(UserInfoController());
   Get.put(BottomNavigationBarController());
-  // Get.put(AllInfoController());
+
   Get.lazyPut(() => SmokeFreeTimeController());
   Get.lazyPut(() => AllInfoController());
   Get.lazyPut(() => MoneySavedController());
@@ -44,7 +46,9 @@ class MyApp extends StatelessWidget {
     _userInfoController.getSessionInfo();
     print('**************** $isLogged');
     print('**************** $userInfo');
-
+    if (!isLogged) {
+      userData.write('screenTime', 0);
+    }
     final hasQuitDate = userInfo != null ? userInfo['quitDate'] : null;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
-import 'package:quit_smoking/practice.dart';
+import 'package:quit_smoking/Missions/all_mission.dart';
+
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   CustomBottomNavigationBar({Key? key}) : super(key: key);
   final BottomNavigationBarController _navigationBarController =
       Get.find<BottomNavigationBarController>();
-  List<Widget> tabs = const [
+  List<Widget> tabs = [
     Dashboard(),
     AllMissions(),
     Center(child: Text('Journal')),

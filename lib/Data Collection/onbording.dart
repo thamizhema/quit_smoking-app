@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,7 @@ class _OnBordingState extends State<OnBording> {
   final getStorage = GetStorage();
 
   final UserInfoController _userInfoController = Get.find<UserInfoController>();
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   List<Widget> dataCollection = [
     WelcomePage(),
@@ -104,6 +106,7 @@ class _OnBordingState extends State<OnBording> {
                                 'quitReason':
                                     _userInfoController.quitReason.value
                               });
+
                               _userInfoController.addUserInfoToDb();
                               // Get.lazyPut(() => SmokeFreeTimeController());
                               // Get.lazyPut(() => MoneySavedController());

@@ -12,6 +12,7 @@ import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
 import 'package:quit_smoking/Data%20Collection/welcome_page.dart';
+import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
 import 'package:quit_smoking/login/email_login.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -43,34 +44,45 @@ class SignUp extends StatelessWidget {
       final checkUser = await _firestore.collection("User").get();
       Map getUserData = {};
       bool isCompleted = false;
-      for (var i in checkUser.docs) {
-        if (i['email'] == updateUserInfo['email']) {
-          isCompleted = true;
-          getUserData = i.data();
-          Timestamp date = i['quitDate'][i['relapsedCount']];
-          DateTime quitDate =
-              DateTime.fromMicrosecondsSinceEpoch(date.microsecondsSinceEpoch);
-          getUserData['quitDate'] = quitDate.toString();
-          getStorage.write('userInfo', getUserData);
+      print('chhhhhhhhhhhh ${checkUser.docs.isNotEmpty}');
+      if (checkUser.docs.isNotEmpty) {
+        for (var i in checkUser.docs) {
+          if (i['email'] == updateUserInfo['email']) {
+            isCompleted = true;
+            getUserData = i.data();
+            Timestamp date = i['quitDate'][i['relapsedCount']];
+            DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
+                date.microsecondsSinceEpoch);
+            getUserData['quitDate'] = quitDate.toString();
+            getStorage.write('userInfo', getUserData);
+          }
         }
-      }
-      getStorage.write('isLogged', true);
-      if (isCompleted) {
-        VxDialog.showConfirmation(
-          context,
-          content: "welcome",
-          title: 'Did you Smoked',
-          confirm: 'Yes',
-          cancel: "No",
-          onCancelPress: () {
-            getStorage.write('isLogged', true);
-            Get.offAll(Dashboard(), transition: Transition.cupertino);
-          },
-          onConfirmPress: () {
-            getStorage.write('isLogged', true);
-            Get.offAll(OnBording(), transition: Transition.cupertino);
-          },
-        );
+        final missionData = await _firestore
+            .collection('Missions')
+            .doc(updateUserInfo['email'])
+            .get();
+        getStorage.write('missions', missionData['missions']);
+        getStorage.write('isLogged', true);
+        if (isCompleted) {
+          VxDialog.showConfirmation(
+            context,
+            content: "welcome",
+            title: 'Did you Smoked',
+            confirm: 'Yes',
+            cancel: "No",
+            onCancelPress: () {
+              getStorage.write('isLogged', true);
+              Get.offAll(CustomBottomNavigationBar(),
+                  transition: Transition.cupertino);
+            },
+            onConfirmPress: () {
+              getStorage.write('isLogged', true);
+              Get.offAll(OnBording(), transition: Transition.cupertino);
+            },
+          );
+        } else {
+          print('fb sign up else');
+        }
       } else {
         getStorage.write('isLogged', true);
         Get.offAll(OnBording(), transition: Transition.cupertino);
@@ -104,34 +116,44 @@ class SignUp extends StatelessWidget {
       final checkUser = await _firestore.collection("User").get();
       Map getUserData = {};
       bool isCompleted = false;
-      for (var i in checkUser.docs) {
-        if (i['email'] == updateUserInfo['email']) {
-          isCompleted = true;
-          getUserData = i.data();
-          Timestamp date = i['quitDate'][i['relapsedCount']];
-          DateTime quitDate =
-              DateTime.fromMicrosecondsSinceEpoch(date.microsecondsSinceEpoch);
-          getUserData['quitDate'] = quitDate.toString();
-          getStorage.write('userInfo', getUserData);
+      if (checkUser.docs.isNotEmpty) {
+        for (var i in checkUser.docs) {
+          if (i['email'] == updateUserInfo['email']) {
+            isCompleted = true;
+            getUserData = i.data();
+            Timestamp date = i['quitDate'][i['relapsedCount']];
+            DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
+                date.microsecondsSinceEpoch);
+            getUserData['quitDate'] = quitDate.toString();
+            getStorage.write('userInfo', getUserData);
+          }
         }
-      }
-
-      if (isCompleted) {
-        VxDialog.showConfirmation(
-          context,
-          content: "welcome",
-          title: 'Did you Smoked',
-          confirm: 'Yes',
-          cancel: "No",
-          onCancelPress: () {
-            getStorage.write('isLogged', true);
-            Get.offAll(Dashboard(), transition: Transition.cupertino);
-          },
-          onConfirmPress: () {
-            getStorage.write('isLogged', true);
-            Get.offAll(OnBording(), transition: Transition.cupertino);
-          },
-        );
+        final missionData = await _firestore
+            .collection('Missions')
+            .doc(updateUserInfo['email'])
+            .get();
+        getStorage.write('missions', missionData['missions']);
+        getStorage.write('isLogged', true);
+        if (isCompleted) {
+          VxDialog.showConfirmation(
+            context,
+            content: "welcome",
+            title: 'Did you Smoked',
+            confirm: 'Yes',
+            cancel: "No",
+            onCancelPress: () {
+              getStorage.write('isLogged', true);
+              Get.offAll(CustomBottomNavigationBar(),
+                  transition: Transition.cupertino);
+            },
+            onConfirmPress: () {
+              getStorage.write('isLogged', true);
+              Get.offAll(OnBording(), transition: Transition.cupertino);
+            },
+          );
+        } else {
+          print('google sign up else');
+        }
       } else {
         getStorage.write('isLogged', true);
         Get.offAll(OnBording(), transition: Transition.cupertino);
@@ -149,50 +171,49 @@ class SignUp extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
-                flex: 1,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  child: Image.asset('images/google_logo.png'),
+                  child: Image.asset('images/splash.jpg'),
                 ),
               ),
               const SizedBox(
                 height: 100,
               ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SignUpButtons(
-                        icon: MdiIcons.email,
-                        bgColor: const Color(0xff9E301A),
-                        textColor: OurColors.mainTextColor,
-                        buttonName: "Sign in With Email  ",
-                        onPressed: () {
-                          Get.to(EmailLogin());
-                        },
-                      ),
-                      SignUpButtons(
-                        isImage: true,
-                        iconImage: "images/google_logo.png",
-                        buttonName: "Sign with Google     ",
-                        onPressed: () {
-                          signinWithGoogle(context);
-                        },
-                      ),
-                      SignUpButtons(
-                        icon: MdiIcons.facebook,
-                        bgColor: OurColors.fbButtonColor,
-                        textColor: OurColors.mainTextColor,
-                        buttonName: "Sign with Facebook",
-                        onPressed: () {
-                          signinWithFacebook(context);
-                        },
-                      ),
-                    ],
-                  ),
+              Container(
+                height: 250,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SignUpButtons(
+                      icon: MdiIcons.email,
+                      bgColor: const Color(0xff9E301A),
+                      textColor: OurColors.mainTextColor,
+                      buttonName: "Sign in With Email  ",
+                      onPressed: () {
+                        Get.to(EmailLogin());
+                      },
+                    ),
+                    SignUpButtons(
+                      isImage: true,
+                      iconImage: "images/google_logo.png",
+                      buttonName: "Sign with Google     ",
+                      onPressed: () {
+                        signinWithGoogle(context);
+                      },
+                    ),
+                    SignUpButtons(
+                      icon: MdiIcons.facebook,
+                      bgColor: OurColors.fbButtonColor,
+                      textColor: OurColors.mainTextColor,
+                      buttonName: "Sign with Facebook",
+                      onPressed: () {
+                        signinWithFacebook(context);
+                      },
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(

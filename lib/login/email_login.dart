@@ -9,6 +9,7 @@ import 'package:quit_smoking/Common/textfield.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
+import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -104,9 +105,14 @@ class _EmailLoginState extends State<EmailLogin> {
             userSession.write('isLogged', true);
           }
         }
-        Get.offAll(Dashboard(), transition: Transition.cupertino);
+        final missionData =
+            await _firestore.collection('Missions').doc(_email.text).get();
+        userSession.write('missions', missionData['missions']);
+        Get.offAll(CustomBottomNavigationBar(),
+            transition: Transition.cupertino);
       } else {
-        Get.offAll(OnBording(), transition: Transition.cupertino);
+        Get.offAll(CustomBottomNavigationBar(),
+            transition: Transition.cupertino);
       }
     } on FirebaseAuthException catch (e) {
       print(e.message);
