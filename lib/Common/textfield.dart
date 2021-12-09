@@ -54,7 +54,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (widget.hasIcon) Text(widget.label),
+          Text(widget.label),
           Center(
             child: TextFormField(
                     controller: widget.controller,

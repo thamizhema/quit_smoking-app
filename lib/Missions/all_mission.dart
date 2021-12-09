@@ -17,27 +17,35 @@ class AllMissions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Missions'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Obx(
-            () => ListView.builder(
-                itemCount: _missionController.allMission.length,
-                itemBuilder: (context, index) {
-                  Map mission = _missionController.allMission.value[index];
-                  return MissionWidget(
-                    isCompleted: mission['isCompleted'],
-                    title: mission['dayOfMission'],
-                    onPressed: () {
-                      Get.to(
-                          ViewMission(
-                            index: index,
-                            missionInfo: mission,
-                          ),
-                          transition: Transition.cupertino);
-                    },
-                  );
-                }),
+            () =>
+                // child:
+                ListView.builder(
+                    itemCount: _missionController.allMission.length,
+                    itemBuilder: (context, index) {
+                      Map mission = _missionController.allMission.value[index];
+                      return MissionWidget(
+                        isCompleted: _missionController.allMission.value[index]
+                            ['isCompleted'],
+                        title: _missionController.allMission.value[index]
+                            ['dayOfMission'],
+                        onPressed: () {
+                          Get.to(
+                              ViewMission(
+                                index: index,
+                                missionInfo: mission,
+                              ),
+                              transition: Transition.cupertino);
+                        },
+                      );
+                    }),
           ),
         ),
       ),

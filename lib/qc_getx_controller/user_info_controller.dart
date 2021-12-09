@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
+import 'package:quit_smoking/Missions/missions.dart';
 import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
 import 'package:quit_smoking/qc_getx_controller/mission_controller.dart';
 
@@ -18,24 +19,6 @@ class UserInfoController extends GetxController {
   final quitReason = [].obs;
   final pageController = PageController().obs;
   final ourUser = false.obs;
-  List mission = [
-    {
-      "yourMission": 'day 1 mission',
-      "whyDoThis": 'day 1 why do this',
-      "notes": "",
-      'isCompleted': true,
-      'missionImage': 'imageLink',
-      'dayOfMission': 'Day 1',
-    },
-    {
-      "yourMission": 'day 2 mission',
-      "whyDoThis": 'day 2 why do this',
-      "notes": "",
-      'isCompleted': false,
-      'images': 'imageLink',
-      'dayOfMission': 'Day 2',
-    },
-  ];
 
   setCurrentQuitDate(quitdate) {
     currentQuitDate(quitdate);

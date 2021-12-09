@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Common/textfield.dart';
+import 'package:quit_smoking/Missions/all_mission.dart';
 import 'package:quit_smoking/qc_getx_controller/mission_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -19,7 +20,10 @@ class ViewMission extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Your Mission Today'),
+        title: const Text(
+          'Your Mission Today',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -37,12 +41,34 @@ class ViewMission extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    missionInfo!['yourMission'].toString().text.make(),
-                    missionInfo!['whyDoThis'].toString().text.make(),
-                    VStack([
-                      'Your Notes:'.toString().text.underline.green600.make(),
-                      missionInfo!['notes'].toString().text.green600.make(),
-                    ]),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      width: context.screenWidth,
+                      child: missionInfo!['yourMission'].toString().text.make(),
+                    ),
+                    Column(
+                      children: [
+                        'Why Do This'.toString().text.underline.green600.make(),
+                        Container(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            width: context.screenWidth,
+                            child: missionInfo!['whyDoThis']
+                                .toString()
+                                .text
+                                .make()),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        'Your Notes:'
+                            .toString()
+                            .text
+                            .underline
+                            .green600
+                            .makeCentered(),
+                        missionInfo!['notes'].toString().text.green600.make(),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -55,8 +81,9 @@ class ViewMission extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     width: context.screenWidth,
                     child: CustomTextField(
+                      label: 'Add Comments',
                       controller: _notes,
-                      hintText: "Add some notes",
+                      hintText: "Comments",
                       hasIcon: false,
                       maxLines: 2,
                     ),
@@ -83,6 +110,7 @@ class ViewMission extends StatelessWidget {
                               index: index,
                               isCompleted: true,
                               notes: _notes.text);
+                          _missionController.getAllMissions();
                           Get.back();
                         }),
                       ),

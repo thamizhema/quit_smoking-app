@@ -2,13 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
 import 'package:quit_smoking/practice.dart';
 import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
+import 'package:quit_smoking/qc_getx_controller/cravings_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/health_improvement_controller.dart';
+import 'package:quit_smoking/qc_getx_controller/journal_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/mission_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/money_saved_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
@@ -25,6 +28,8 @@ void main() async {
   Get.put(MissionController());
   Get.put(UserInfoController());
   Get.put(BottomNavigationBarController());
+  Get.put(JournalController());
+  Get.put(CravingsController());
 
   Get.lazyPut(() => SmokeFreeTimeController());
   Get.lazyPut(() => AllInfoController());
@@ -54,6 +59,22 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Poppins",
+        toggleableActiveColor: OurColors.mainColor,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+            foregroundColor: Colors.white,
+            backgroundColor: OurColors.mainColor),
+        // primaryColor: OurColors.mainColor,
+        appBarTheme: AppBarTheme(
+            backgroundColor: OurColors.mainColor,
+            foregroundColor: Colors.white),
+        tabBarTheme: TabBarTheme(
+          unselectedLabelColor: Colors.grey,
+          labelColor: OurColors.mainColor,
+          indicator: UnderlineTabIndicator(
+              // color for indicator (underline)
+              borderSide: BorderSide(color: OurColors.mainColor, width: 5)),
+        ),
+        backgroundColor: OurColors.mainColor,
       ),
       home: isLogged && userInfo != null
           ? hasQuitDate != null

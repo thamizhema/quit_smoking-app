@@ -15,10 +15,12 @@ class MissionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Material(
+        color: Colors.grey[200],
         elevation: 1.5,
-        child: Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -39,8 +41,8 @@ class MissionWidget extends StatelessWidget {
                     : OurColors.secondaryColor,
               ),
             ],
-          ),
-        ).onInkTap(onPressed!),
+          ).onInkTap(onPressed!),
+        ),
       ),
     );
   }

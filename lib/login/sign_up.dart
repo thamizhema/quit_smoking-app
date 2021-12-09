@@ -68,8 +68,8 @@ class SignUp extends StatelessWidget {
             context,
             content: "welcome",
             title: 'Did you Smoked',
-            confirm: 'Yes',
-            cancel: "No",
+            confirm: 'Yes'.text.white.makeCentered(),
+            cancel: "No".text.white.makeCentered(),
             onCancelPress: () {
               getStorage.write('isLogged', true);
               Get.offAll(CustomBottomNavigationBar(),
@@ -139,8 +139,8 @@ class SignUp extends StatelessWidget {
             context,
             content: "welcome",
             title: 'Did you Smoked',
-            confirm: 'Yes',
-            cancel: "No",
+            confirm: 'Yes'.text.white.makeCentered(),
+            cancel: "No".text.white.makeCentered(),
             onCancelPress: () {
               getStorage.write('isLogged', true);
               Get.offAll(CustomBottomNavigationBar(),

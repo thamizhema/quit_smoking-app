@@ -27,8 +27,10 @@ class MoneySavedController extends GetxController {
     perMinutesCigarettePrice(
         ((priceOfPack / packOfCigarettes) * dayOfCigarette) / 1440);
     perDayOfMoneySaved((priceOfPack / packOfCigarettes) * dayOfCigarette);
-    perMonthOfMoneySaved((priceOfPack / packOfCigarettes) * 30.5);
-    perYearOfMoneySaved((priceOfPack / packOfCigarettes) * 365);
+    perMonthOfMoneySaved(
+        (priceOfPack / packOfCigarettes) * (dayOfCigarette * 30.5));
+    perYearOfMoneySaved(
+        (priceOfPack / packOfCigarettes) * (dayOfCigarette * 365));
     getMinutes();
     // } else {
     //   print('got null value');

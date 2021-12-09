@@ -3,7 +3,9 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quit_smoking/Common/colors.dart';
+import 'package:quit_smoking/Cravings/cravings.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
+import 'package:quit_smoking/Journal/journal.dart';
 import 'package:quit_smoking/Missions/all_mission.dart';
 
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
@@ -15,8 +17,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   List<Widget> tabs = [
     Dashboard(),
     AllMissions(),
-    Center(child: Text('Journal')),
-    Center(child: Text('Cravings')),
+    Journal(),
+    Cravings(),
     Center(child: Text('Support')),
   ];
   List<IconData> icons = [
