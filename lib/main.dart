@@ -35,6 +35,7 @@ void main() async {
   Get.lazyPut(() => AllInfoController());
   Get.lazyPut(() => MoneySavedController());
   Get.lazyPut(() => HealthImprovementController());
+  // Get.lazyPut(() => CravingsController());
 
   runApp(MyApp());
 }

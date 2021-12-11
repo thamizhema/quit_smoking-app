@@ -50,6 +50,7 @@ class SignUp extends StatelessWidget {
           if (i['email'] == updateUserInfo['email']) {
             isCompleted = true;
             getUserData = i.data();
+            _userInfoController.userQuitDates(i['quitDate']);
             Timestamp date = i['quitDate'][i['relapsedCount']];
             DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
                 date.microsecondsSinceEpoch);
@@ -121,6 +122,7 @@ class SignUp extends StatelessWidget {
           if (i['email'] == updateUserInfo['email']) {
             isCompleted = true;
             getUserData = i.data();
+            _userInfoController.userQuitDates(i['quitDate']);
             Timestamp date = i['quitDate'][i['relapsedCount']];
             DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
                 date.microsecondsSinceEpoch);

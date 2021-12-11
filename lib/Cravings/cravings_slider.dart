@@ -23,10 +23,11 @@ class CravingsSlider extends StatelessWidget {
               ),
               Obx(
                 () => Slider(
+                    divisions: 5,
+                    min: 1,
+                    max: 10,
                     activeColor: OurColors.mainColor,
                     inactiveColor: OurColors.secondaryColor,
-                    min: 1,
-                    max: 12,
                     value: _cravingsController.cravingStrong.value,
                     onChanged: (val) {
                       _cravingsController.cravingStrong(val);

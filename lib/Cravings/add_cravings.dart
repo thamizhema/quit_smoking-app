@@ -1,23 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/Common/textfield.dart';
 import 'package:quit_smoking/Cravings/craving_details.dart';
 import 'package:quit_smoking/Cravings/craving_info.dart';
 import 'package:quit_smoking/Cravings/cravings_location.dart';
 import 'package:quit_smoking/Cravings/cravings_slider.dart';
+import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/cravings_controller.dart';
+import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AddCravings extends StatelessWidget {
   AddCravings({Key? key}) : super(key: key);
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final getStorage = GetStorage();
   final CravingsController _cravingsController = Get.find<CravingsController>();
+  final AllInfoController _allInfoController = Get.find<AllInfoController>();
   final TextEditingController _comment = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    Widget hr = SizedBox(
+    Widget hr = const SizedBox(
       height: 20,
       child: Divider(
         thickness: 2,
@@ -63,7 +71,7 @@ class AddCravings extends StatelessWidget {
                   hintText: 'Add Comment',
                   label: '',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -79,7 +87,34 @@ class AddCravings extends StatelessWidget {
                           .box
                           .height(50)
                           .makeCentered()
-                          .onInkTap(() async {}),
+                          .onInkTap(() async {
+                        final userInfo = await getStorage.read('userInfo');
+
+                        Map cravingsData = {
+                          'howStrong': int.parse(_cravingsController
+                              .cravingStrong.value
+                              .toStringAsFixed(0)),
+                          'feeling': _cravingsController.feeling.value,
+                          'doing': _cravingsController.doing.value,
+                          'whoWithYou': _cravingsController.whoWithYou.value,
+                          'comment': _comment.text,
+                          'day': _allInfoController.totalDays.value
+                        };
+                        _cravingsController.cravingsList.value
+                            .add(cravingsData);
+                        List cravingsDataList =
+                            _cravingsController.cravingsList.value;
+                        print(cravingsDataList);
+                        print(cravingsDataList.runtimeType);
+                        _firestore
+                            .collection('Cravings')
+                            .doc(userInfo['email'])
+                            .set({
+                          'cravings': cravingsDataList,
+                        });
+                        getStorage.write('cravings', cravingsDataList);
+                        Get.back();
+                      }),
                     ),
                   ),
                 )

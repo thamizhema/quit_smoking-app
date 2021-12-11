@@ -111,8 +111,11 @@ class _EmailLoginState extends State<EmailLogin> {
         Get.offAll(CustomBottomNavigationBar(),
             transition: Transition.cupertino);
       } else {
-        Get.offAll(CustomBottomNavigationBar(),
-            transition: Transition.cupertino);
+        final checkUser =
+            await _firestore.collection("User").doc(_email.text).get();
+        _userInfoController.userInfo(checkUser.data());
+        _userInfoController.userQuitDates(checkUser['quitDate']);
+        Get.offAll(OnBording(), transition: Transition.cupertino);
       }
     } on FirebaseAuthException catch (e) {
       print(e.message);
@@ -193,6 +196,7 @@ class _EmailLoginState extends State<EmailLogin> {
                               autofocus: true,
                               onPressed: () {
                                 setState(() {
+                                  _userInfoController.isSmoked(false);
                                   smoked = false;
                                 });
                               }),
@@ -211,6 +215,7 @@ class _EmailLoginState extends State<EmailLogin> {
                             onPressed: () {
                               setState(
                                 () {
+                                  _userInfoController.isSmoked(true);
                                   smoked = true;
                                 },
                               );

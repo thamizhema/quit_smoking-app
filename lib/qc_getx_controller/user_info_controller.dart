@@ -16,9 +16,11 @@ class UserInfoController extends GetxController {
   final userInfo = {}.obs;
   final pageIndex = 0.obs;
   final dataCollection = false.obs;
+  final userQuitDates = [].obs;
   final quitReason = [].obs;
   final pageController = PageController().obs;
   final ourUser = false.obs;
+  final isSmoked = false.obs;
 
   setCurrentQuitDate(quitdate) {
     currentQuitDate(quitdate);
@@ -53,11 +55,12 @@ class UserInfoController extends GetxController {
   Map<String, dynamic> userInformation({isDb = true}) {
     DateTime quitDate =
         DateTime.parse(userInfo.value['quitDate'] ?? DateTime.now().toString());
+    userQuitDates.value.add(quitDate);
 
     return {
       'email': userInfo['email'],
       'username': userInfo['username'],
-      if (isDb) 'quitDate': [quitDate],
+      if (isDb) 'quitDate': userQuitDates.value,
       if (!isDb) 'quitDate': quitDate.toString(),
       'dayOfCigarette': userInfo['dayOfCigarette'] ?? 1,
       'packOfCigarettes': userInfo['packOfCigarettes'] ?? 10,
@@ -66,11 +69,11 @@ class UserInfoController extends GetxController {
       'quitReason': userInfo['quitReason'].length == 0
           ? ['Other']
           : userInfo['quitReason'],
-      'relapsedCount': 0,
+      'relapsedCount': userQuitDates.value.length - 1,
     };
   }
 
-  void addUserInfoToDb() {
+  void addUserInfoToDb() async {
     try {
       firestore
           .collection('User')
