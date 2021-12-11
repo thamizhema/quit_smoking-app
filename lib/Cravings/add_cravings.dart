@@ -11,7 +11,7 @@ import 'package:quit_smoking/Cravings/cravings_location.dart';
 import 'package:quit_smoking/Cravings/cravings_slider.dart';
 import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/cravings_controller.dart';
-import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 class AddCravings extends StatelessWidget {

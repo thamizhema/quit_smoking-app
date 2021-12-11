@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Common/colors.dart';
-import 'package:quit_smoking/Dashbord/dashboard.dart';
-import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
+
 import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
-import 'package:quit_smoking/practice.dart';
+
 import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/cravings_controller.dart';
@@ -16,7 +15,6 @@ import 'package:quit_smoking/qc_getx_controller/mission_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/money_saved_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/smoke_free_time_contreller.dart';
 import 'package:quit_smoking/Data%20Collection/onbording.dart';
-import 'package:quit_smoking/Data%20Collection/welcome_page.dart';
 
 import 'package:quit_smoking/login/sign_up.dart';
 import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';

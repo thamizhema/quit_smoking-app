@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:quit_smoking/Common/colors.dart';
 import 'package:quit_smoking/qc_getx_controller/cravings_controller.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class CravingsChart extends StatelessWidget {
   final CravingsController _cravingsController = Get.find<CravingsController>();

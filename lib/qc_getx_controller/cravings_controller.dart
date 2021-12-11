@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
-import 'package:quit_smoking/qc_getx_controller/user_info_controller.dart';
 
 class CravingsController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -17,8 +15,6 @@ class CravingsController extends GetxController {
   getCravingsInfo() async {
     final userInfo = await getStorage.read('userInfo');
     final allCravings = await getStorage.read('cravings');
-    final cravingsCheck =
-        await _firestore.collection('Cravings').doc(userInfo['email']).get();
 
     ///TODO: change logic for allCravings != null because if i uninstall the app and get into the app again i have craving data on db but i don't get in local session
 
