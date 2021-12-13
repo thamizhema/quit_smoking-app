@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quit_smoking/Cravings/add_cravings.dart';
-import 'package:quit_smoking/practice.dart';
+import 'package:quit_smoking/Cravings/cravings_chart.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 class Cravings extends StatelessWidget {

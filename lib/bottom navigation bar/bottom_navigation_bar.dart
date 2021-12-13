@@ -7,6 +7,7 @@ import 'package:quit_smoking/Cravings/cravings.dart';
 import 'package:quit_smoking/Dashbord/dashboard.dart';
 import 'package:quit_smoking/Journal/journal.dart';
 import 'package:quit_smoking/Missions/all_mission.dart';
+import 'package:quit_smoking/Support/support.dart';
 
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
 
@@ -19,7 +20,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     AllMissions(),
     Journal(),
     Cravings(),
-    Center(child: Text('Support')),
+    SupportPage(),
   ];
   List<IconData> icons = [
     Icons.menu,

@@ -6,5 +6,5 @@ class OurColors {
   static Color mainTextColor = const Color(0xffFFFFFF);
   static Color secondaryTextColor = const Color(0xff797979);
 
-  static Color fbButtonColor = const Color(0xff465996);
+  static Color fbButtonColor = const Color(0xff193257);
 }
