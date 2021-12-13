@@ -12,8 +12,6 @@ class SupportPage extends StatefulWidget {
   _SupportPageState createState() => _SupportPageState();
 }
 
-
-
 class _SupportPageState extends State<SupportPage> {
   @override
   Widget build(BuildContext context) {
