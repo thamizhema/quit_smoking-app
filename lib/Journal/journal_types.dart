@@ -19,32 +19,37 @@ class JournalTypes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Obx(
-        () => ListView.builder(
-            itemCount: _journalController.allJournal.value[fieldKey].length,
-            itemBuilder: (context, index) {
-              final reflection =
-                  _journalController.allJournal.value[fieldKey].keys.toList();
-              String label = convertDate(reflection[index]);
-              final notes = _journalController.allJournal.value[fieldKey].values
-                  .toList()[index];
-              print(notes);
-              return JournalList(
-                title: label,
-                notes: notes,
-                onPressed: () {
-                  Get.to(ReadJournal(
-                    title1:
-                        'How did I do with uplifting someone and improving the environment this Day',
-                    title2:
-                        'What lessons did I learn this day and how will I apply this in the future',
-                    title3: 'Today\'s reflections...',
-                    memory: notes,
-                  ));
-                },
-              );
-            }),
-      ),
+      child: _journalController.allJournal.isEmpty
+          ? null
+          : Obx(
+              () => ListView.builder(
+                  itemCount:
+                      _journalController.allJournal.value[fieldKey].length,
+                  itemBuilder: (context, index) {
+                    final reflection = _journalController
+                        .allJournal.value[fieldKey].keys
+                        .toList();
+                    String label = convertDate(reflection[index]);
+                    final notes = _journalController
+                        .allJournal.value[fieldKey].values
+                        .toList()[index];
+                    print(notes);
+                    return JournalList(
+                      title: label,
+                      notes: notes,
+                      onPressed: () {
+                        Get.to(ReadJournal(
+                          title1:
+                              'How did I do with uplifting someone and improving the environment this Day',
+                          title2:
+                              'What lessons did I learn this day and how will I apply this in the future',
+                          title3: 'Today\'s reflections...',
+                          memory: notes,
+                        ));
+                      },
+                    );
+                  }),
+            ),
     );
   }
 }

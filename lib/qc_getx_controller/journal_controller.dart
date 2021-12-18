@@ -15,7 +15,7 @@ class JournalController extends GetxController {
     final getAllJournal =
         await _firestore.collection('Journal').doc(userEmail).get();
     getStorage.write('journal', getAllJournal.data());
-    journal = await getStorage.read('journal');
+    journal = await getStorage.read('journal') ?? {};
 
     allJournal(journal);
     // allJournal(getAllJournal.data());

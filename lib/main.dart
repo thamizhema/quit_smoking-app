@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Poppins",
         toggleableActiveColor: OurColors.mainColor,
+
         floatingActionButtonTheme: FloatingActionButtonThemeData(
             foregroundColor: Colors.white,
             backgroundColor: OurColors.mainColor),
