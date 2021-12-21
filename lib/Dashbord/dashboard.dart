@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Dashbord/Guided%20Meditation/guided_meditation.dart';
+import 'package:quit_smoking/Dashbord/Health_and_Wellness/helath_and_wellness.dart';
 import 'package:quit_smoking/Dashbord/money_saved/money_saved.dart';
 import 'package:quit_smoking/Dashbord/smoke_free_time/smoke_free_time.dart';
 import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
@@ -23,10 +24,11 @@ class _DashboardState extends State<Dashboard> {
   final AllInfoController _allInfoController = Get.find<AllInfoController>();
 
   List<Widget> dashboardItems = [
-    GuidedMeditation(),
+    HealthAndWellness(),
     SmokeFreeTime(),
     HealthImprovement(),
     MoneySaved(),
+    GuidedMeditation(),
   ];
 
   @override

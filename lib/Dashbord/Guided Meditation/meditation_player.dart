@@ -81,7 +81,6 @@ class _MeditationPlayerState extends State<MeditationPlayer> {
     // TODO: implement dispose
     super.dispose();
     _player!.stop();
-    cache!.clearAll();
   }
 
   @override

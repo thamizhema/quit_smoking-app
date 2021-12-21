@@ -68,7 +68,7 @@ class _CustomMusicsState extends State<CustomMusics> {
             audioPlayer: players[index],
             title: audioTitle[index],
             musicPath: musics[index],
-            imagePath: images[index],
+            // imagePath: images[index],
           ),
         ),
       ),

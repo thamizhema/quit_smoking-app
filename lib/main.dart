@@ -9,6 +9,7 @@ import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dar
 import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/cravings_controller.dart';
+import 'package:quit_smoking/qc_getx_controller/health_and_wellness_contreller.dart';
 import 'package:quit_smoking/qc_getx_controller/health_improvement_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/journal_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/mission_controller.dart';
@@ -28,6 +29,7 @@ void main() async {
   Get.put(BottomNavigationBarController());
   Get.put(JournalController());
   Get.put(CravingsController());
+  Get.put(HealthAndWellnessController());
 
   Get.lazyPut(() => SmokeFreeTimeController());
   Get.lazyPut(() => AllInfoController());

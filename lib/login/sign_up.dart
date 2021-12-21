@@ -172,16 +172,14 @@ class SignUp extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
+                  width: context.screenWidth,
                   child: Image.asset('images/splash.jpg'),
                 ),
-              ),
-              const SizedBox(
-                height: 100,
               ),
               Container(
                 height: 250,
@@ -216,9 +214,6 @@ class SignUp extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 30,
               ),
             ],
           ),
