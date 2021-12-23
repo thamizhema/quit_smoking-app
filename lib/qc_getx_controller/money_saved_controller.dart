@@ -21,16 +21,13 @@ class MoneySavedController extends GetxController {
     Map userInfo = await getStorage.read('userInfo');
     // if (userInfo[['quitDate']] != null) {
     quitDate(DateTime.parse(userInfo['quitDate']));
-    int dayOfCigarette = userInfo['dayOfCigarette'];
-    int packOfCigarettes = userInfo['packOfCigarettes'];
+    int dayOfCFags = userInfo['dayOfCFags'];
+    int packOfFags = userInfo['packOfFags'];
     int priceOfPack = userInfo['priceOfPack'];
-    perMinutesCigarettePrice(
-        ((priceOfPack / packOfCigarettes) * dayOfCigarette) / 1440);
-    perDayOfMoneySaved((priceOfPack / packOfCigarettes) * dayOfCigarette);
-    perMonthOfMoneySaved(
-        (priceOfPack / packOfCigarettes) * (dayOfCigarette * 30.5));
-    perYearOfMoneySaved(
-        (priceOfPack / packOfCigarettes) * (dayOfCigarette * 365));
+    perMinutesCigarettePrice(((priceOfPack / packOfFags) * dayOfCFags) / 1440);
+    perDayOfMoneySaved((priceOfPack / packOfFags) * dayOfCFags);
+    perMonthOfMoneySaved((priceOfPack / packOfFags) * (dayOfCFags * 30.5));
+    perYearOfMoneySaved((priceOfPack / packOfFags) * (dayOfCFags * 365));
     getMinutes();
     // } else {
     //   print('got null value');

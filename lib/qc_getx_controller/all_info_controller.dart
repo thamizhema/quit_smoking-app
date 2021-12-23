@@ -27,8 +27,8 @@ class AllInfoController extends GetxController {
   updateFunction() {
     totalMinutes(quitDate.value.difference(DateTime.now()).inMinutes.abs());
     totalDays(quitDate.value.difference(DateTime.now()).inDays.abs());
-    totalCigarette((userInfo['dayOfCigarette'] / 1440) * totalMinutes.value);
-    totalMoneySaved((userInfo['priceOfPack'] / userInfo['packOfCigarettes']) *
+    totalCigarette((userInfo['dayOfCFags'] / 1440) * totalMinutes.value);
+    totalMoneySaved((userInfo['priceOfPack'] / userInfo['packOfFags']) *
         totalCigarette.value);
     totalScreenTime(totalScreenTime.value + 1);
     getStorage.write('screenTime', totalScreenTime.value);

@@ -61,8 +61,8 @@ class UserInfoController extends GetxController {
       'username': userInfo['username'],
       if (isDb) 'quitDate': userQuitDates.value,
       if (!isDb) 'quitDate': quitDate.toString(),
-      'dayOfCigarette': userInfo['dayOfCigarette'] ?? 1,
-      'packOfCigarettes': userInfo['packOfCigarettes'] ?? 10,
+      'dayOfCFags': userInfo['dayOfCFags'] ?? 1,
+      'packOfFags': userInfo['packOfFags'] ?? 10,
       'priceOfPack': userInfo['priceOfPack'] ?? 100,
       'addictionOfYears': userInfo['addictionOfYears'] ?? 1,
       'quitReason': userInfo['quitReason'].length == 0

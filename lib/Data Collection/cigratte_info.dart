@@ -19,14 +19,14 @@ class CigaretteInfo extends StatelessWidget {
           AboutCigarettes(
             question: 'How Many Cigarettes Did You Smoke a Day?',
             onChange: (value) {
-              _userInfoController.updateUserInfo({"dayOfCigarette": value});
+              _userInfoController.updateUserInfo({"dayOfCFags": value});
             },
           ),
           AboutCigarettes(
             initialValue: 10,
             question: 'How Many Cigarettes Are In Your Pack?',
             onChange: (value) {
-              _userInfoController.updateUserInfo({"packOfCigarettes": value});
+              _userInfoController.updateUserInfo({"packOfFags": value});
             },
           ),
           AboutCigarettes(
