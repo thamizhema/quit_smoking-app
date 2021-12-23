@@ -52,8 +52,8 @@ class UserInfoController extends GetxController {
   }
 
   Map<String, dynamic> userInformation({isDb = true}) {
-    DateTime quitDates =
-        DateTime.parse(userInfo.value['quitDates'] ?? DateTime.now().toString());
+    DateTime quitDates = DateTime.parse(
+        userInfo.value['quitDates'] ?? DateTime.now().toString());
     userquitDatess.value.add(quitDates);
 
     return {
