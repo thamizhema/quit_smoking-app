@@ -11,7 +11,7 @@ class SmokeFreeTimeController extends GetxController {
   int seconds = 0, minutes = 0, hours = 0, days = 0, months = 0, years = 0;
   final getStorage = GetStorage();
 
-  final quitDate = DateTime.now().obs;
+  final quitDates = DateTime.now().obs;
   final RxMap<String, int> countdown = {
     'years': 0,
     'months': 0,
@@ -20,8 +20,8 @@ class SmokeFreeTimeController extends GetxController {
     'minutes': 0,
     'seconds': 0,
   }.obs;
-  setQuitDate(date) {
-    quitDate(date);
+  setquitDates(date) {
+    quitDates(date);
   }
 
   setCountdown(Map<String, int> times) {
@@ -34,7 +34,7 @@ class SmokeFreeTimeController extends GetxController {
   }
 
   updateFunction() {
-    totalSeconds = quitDate.value.difference(DateTime.now()).inSeconds;
+    totalSeconds = quitDates.value.difference(DateTime.now()).inSeconds;
     seconds = totalSeconds!.abs() % 60;
     int totalMinuts = totalSeconds!.abs() ~/ 60;
     minutes = totalMinuts % 60;
@@ -62,9 +62,9 @@ class SmokeFreeTimeController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    DateTime getQuitDate =
-        DateTime.parse(getStorage.read('userInfo')['quitDate']);
-    setQuitDate(getQuitDate);
+    DateTime getquitDates =
+        DateTime.parse(getStorage.read('userInfo')['quitDates']);
+    setquitDates(getquitDates);
     startTimer();
   }
 }

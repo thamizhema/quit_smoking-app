@@ -103,8 +103,8 @@ class _OnBordingState extends State<OnBording> {
                             if (_userInfoController.pageIndex.value + 1 ==
                                 dataCollection.length) {
                               _userInfoController.updateUserInfo({
-                                'quitReason':
-                                    _userInfoController.quitReason.value
+                                'quitReasons':
+                                    _userInfoController.quitReasons.value
                               });
 
                               _userInfoController.addUserInfoToDb();

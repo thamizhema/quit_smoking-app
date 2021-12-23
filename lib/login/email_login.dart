@@ -96,10 +96,10 @@ class _EmailLoginState extends State<EmailLogin> {
         for (var i in checkUser.docs) {
           if (i['email'] == _email.text) {
             getUserData = i.data();
-            Timestamp date = i['quitDate'][i['quitDate'].length - 1];
-            DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
+            Timestamp date = i['quitDates'][i['quitDates'].length - 1];
+            DateTime quitDates = DateTime.fromMicrosecondsSinceEpoch(
                 date.microsecondsSinceEpoch);
-            getUserData['quitDate'] = quitDate.toString();
+            getUserData['quitDates'] = quitDates.toString();
             userSession.write('userInfo', getUserData);
             userSession.write('isLogged', true);
           }
@@ -113,7 +113,7 @@ class _EmailLoginState extends State<EmailLogin> {
         final checkUser =
             await _firestore.collection("User").doc(_email.text).get();
         _userInfoController.userInfo(checkUser.data());
-        _userInfoController.userQuitDates(checkUser['quitDate']);
+        _userInfoController.userquitDatess(checkUser['quitDates']);
         Get.offAll(OnBording(), transition: Transition.cupertino);
       }
     } on FirebaseAuthException catch (e) {

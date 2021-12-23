@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
     if (!isLogged) {
       userData.write('screenTime', 0);
     }
-    final hasQuitDate = userInfo != null ? userInfo['quitDate'] : null;
+    final hasquitDates = userInfo != null ? userInfo['quitDates'] : null;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: OurColors.mainColor,
       ),
       home: isLogged && userInfo != null
-          ? hasQuitDate != null
+          ? hasquitDates != null
               ? CustomBottomNavigationBar()
               : OnBording()
           : SignUp(),

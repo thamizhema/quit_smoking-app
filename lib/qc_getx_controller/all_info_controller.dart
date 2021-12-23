@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 class AllInfoController extends GetxController {
   Timer? timer;
   final getStorage = GetStorage();
-  final quitDate = DateTime.now().obs;
+  final quitDates = DateTime.now().obs;
   final userInfo = {}.obs;
   final totalMinutes = 0.obs;
   final totalDays = 0.obs;
@@ -20,13 +20,13 @@ class AllInfoController extends GetxController {
     Map sessionInfo = await getStorage.read('userInfo');
     totalScreenTime(getStorage.read('screenTime') ?? 0);
     userInfo(sessionInfo);
-    quitDate(DateTime.parse(sessionInfo['quitDate']));
+    quitDates(DateTime.parse(sessionInfo['quitDates']));
     startTimer();
   }
 
   updateFunction() {
-    totalMinutes(quitDate.value.difference(DateTime.now()).inMinutes.abs());
-    totalDays(quitDate.value.difference(DateTime.now()).inDays.abs());
+    totalMinutes(quitDates.value.difference(DateTime.now()).inMinutes.abs());
+    totalDays(quitDates.value.difference(DateTime.now()).inDays.abs());
     totalCigarette((userInfo['dayOfCFags'] / 1440) * totalMinutes.value);
     totalMoneySaved((userInfo['priceOfPack'] / userInfo['packOfFags']) *
         totalCigarette.value);

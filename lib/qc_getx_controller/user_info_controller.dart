@@ -11,18 +11,18 @@ class UserInfoController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final MissionController _missionController = Get.find<MissionController>();
   final getStorage = GetStorage();
-  final currentQuitDate = DateTime.now().obs;
+  final currentquitDates = DateTime.now().obs;
   final userInfo = {}.obs;
   final pageIndex = 0.obs;
   final dataCollection = false.obs;
-  final userQuitDates = [].obs;
-  final quitReason = [].obs;
+  final userquitDatess = [].obs;
+  final quitReasons = [].obs;
   final pageController = PageController().obs;
   final ourUser = false.obs;
   final isSmoked = false.obs;
 
-  setCurrentQuitDate(quitdate) {
-    currentQuitDate(quitdate);
+  setCurrentquitDates(quitDates) {
+    currentquitDates(quitDates);
   }
 
   void updateUserInfo(Map userDetails) async {
@@ -43,32 +43,32 @@ class UserInfoController extends GetxController {
     updateUserInfo(userSessionData);
   }
 
-  setQuitReason(reason) {
-    quitReason.add(reason);
+  setquitReasons(reason) {
+    quitReasons.add(reason);
   }
 
-  removeQuitReason(reason) {
-    quitReason.remove(reason);
+  removequitReasons(reason) {
+    quitReasons.remove(reason);
   }
 
   Map<String, dynamic> userInformation({isDb = true}) {
-    DateTime quitDate =
-        DateTime.parse(userInfo.value['quitDate'] ?? DateTime.now().toString());
-    userQuitDates.value.add(quitDate);
+    DateTime quitDates =
+        DateTime.parse(userInfo.value['quitDates'] ?? DateTime.now().toString());
+    userquitDatess.value.add(quitDates);
 
     return {
       'email': userInfo['email'],
       'username': userInfo['username'],
-      if (isDb) 'quitDate': userQuitDates.value,
-      if (!isDb) 'quitDate': quitDate.toString(),
+      if (isDb) 'quitDates': userquitDatess.value,
+      if (!isDb) 'quitDates': quitDates.toString(),
       'dayOfCFags': userInfo['dayOfCFags'] ?? 1,
       'packOfFags': userInfo['packOfFags'] ?? 10,
       'priceOfPack': userInfo['priceOfPack'] ?? 100,
       'addictionOfYears': userInfo['addictionOfYears'] ?? 1,
-      'quitReason': userInfo['quitReason'].length == 0
+      'quitReasons': userInfo['quitReasons'].length == 0
           ? ['Other']
-          : userInfo['quitReason'],
-      'relapsedCount': userQuitDates.value.length - 1,
+          : userInfo['quitReasons'],
+      'relapsedCount': userquitDatess.value.length - 1,
     };
   }
 

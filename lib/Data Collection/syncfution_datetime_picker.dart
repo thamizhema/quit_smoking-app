@@ -21,7 +21,7 @@ class _SyncfutionDatePickerState extends State<SyncfutionDatePicker> {
 
   bool isDate = true;
   DateTime selectedDate = DateTime.now();
-  DateTime quitDate = DateTime.now();
+  DateTime quitDates = DateTime.now();
   bool isAm = DateTime.now().hour < 12;
   double hours = DateTime.now().hour % 12 == 0 ? 12 : DateTime.now().hour % 12;
   double minutes = DateTime.now().minute.toDouble();
@@ -136,7 +136,7 @@ class _SyncfutionDatePickerState extends State<SyncfutionDatePicker> {
                           child: MaterialButton(
                             height: 50,
                             onPressed: () {
-                              quitDate = DateTime(
+                              quitDates = DateTime(
                                 selectedDate.year,
                                 selectedDate.month,
                                 selectedDate.day,
@@ -148,7 +148,7 @@ class _SyncfutionDatePickerState extends State<SyncfutionDatePicker> {
                               );
 
                               _userInfoController.updateUserInfo(
-                                  {'quitDate': quitDate.toString()});
+                                  {'quitDates': quitDates.toString()});
                               _userInfoController.pageController.value.nextPage(
                                   duration: const Duration(milliseconds: 800),
                                   curve: Curves.ease);

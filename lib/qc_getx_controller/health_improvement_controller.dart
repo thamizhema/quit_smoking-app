@@ -8,7 +8,7 @@ import 'package:quit_smoking/Dashbord/health_improvement/improvement_widget.dart
 class HealthImprovementController extends GetxController {
   Timer? timer;
   final getStorage = GetStorage();
-  final quitDate = DateTime.now().obs;
+  final quitDates = DateTime.now().obs;
   final totalMinutes = 0.obs;
   final totalDays = 0.obs;
   final showList = [].obs;
@@ -19,14 +19,14 @@ class HealthImprovementController extends GetxController {
   getTime() async {
     Map userInfo = await getStorage.read('userInfo');
 
-    quitDate(DateTime.parse(userInfo['quitDate']));
+    quitDates(DateTime.parse(userInfo['quitDates']));
 
     startTimer();
   }
 
   updateFunction() {
-    totalMinutes(quitDate.value.difference(DateTime.now()).inMinutes.abs());
-    totalDays(quitDate.value.difference(DateTime.now()).inDays.abs());
+    totalMinutes(quitDates.value.difference(DateTime.now()).inMinutes.abs());
+    totalDays(quitDates.value.difference(DateTime.now()).inDays.abs());
     setShowListItem();
 
     // Map improvementsList = ;

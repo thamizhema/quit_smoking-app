@@ -9,7 +9,7 @@ class MoneySavedController extends GetxController {
   final totalMinutes = 0.obs;
   final minutesOfCost = 0.0.obs;
   final perMinutesCigarettePrice = 0.0.obs;
-  final quitDate = DateTime.now().obs;
+  final quitDates = DateTime.now().obs;
 
   final perDayOfMoneySaved = 0.0.obs;
   final perMonthOfMoneySaved = 0.0.obs;
@@ -19,8 +19,8 @@ class MoneySavedController extends GetxController {
 
   getTime() async {
     Map userInfo = await getStorage.read('userInfo');
-    // if (userInfo[['quitDate']] != null) {
-    quitDate(DateTime.parse(userInfo['quitDate']));
+    // if (userInfo[['quitDates']] != null) {
+    quitDates(DateTime.parse(userInfo['quitDates']));
     int dayOfCFags = userInfo['dayOfCFags'];
     int packOfFags = userInfo['packOfFags'];
     int priceOfPack = userInfo['priceOfPack'];
@@ -36,7 +36,7 @@ class MoneySavedController extends GetxController {
 
   getMinutes() {
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      totalMinutes(quitDate.value.difference(DateTime.now()).inMinutes.abs());
+      totalMinutes(quitDates.value.difference(DateTime.now()).inMinutes.abs());
       moneySaved(perMinutesCigarettePrice.value * totalMinutes.value);
     });
   }

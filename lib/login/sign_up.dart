@@ -49,11 +49,11 @@ class SignUp extends StatelessWidget {
           if (i['email'] == updateUserInfo['email']) {
             isCompleted = true;
             getUserData = i.data();
-            _userInfoController.userQuitDates(i['quitDate']);
-            Timestamp date = i['quitDate'][i['relapsedCount']];
-            DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
+            _userInfoController.userquitDatess(i['quitDates']);
+            Timestamp date = i['quitDates'][i['relapsedCount']];
+            DateTime quitDates = DateTime.fromMicrosecondsSinceEpoch(
                 date.microsecondsSinceEpoch);
-            getUserData['quitDate'] = quitDate.toString();
+            getUserData['quitDates'] = quitDates.toString();
             getStorage.write('userInfo', getUserData);
           }
         }
@@ -121,11 +121,11 @@ class SignUp extends StatelessWidget {
           if (i['email'] == updateUserInfo['email']) {
             isCompleted = true;
             getUserData = i.data();
-            _userInfoController.userQuitDates(i['quitDate']);
-            Timestamp date = i['quitDate'][i['relapsedCount']];
-            DateTime quitDate = DateTime.fromMicrosecondsSinceEpoch(
+            _userInfoController.userquitDatess(i['quitDates']);
+            Timestamp date = i['quitDates'][i['relapsedCount']];
+            DateTime quitDates = DateTime.fromMicrosecondsSinceEpoch(
                 date.microsecondsSinceEpoch);
-            getUserData['quitDate'] = quitDate.toString();
+            getUserData['quitDates'] = quitDates.toString();
             getStorage.write('userInfo', getUserData);
           }
         }

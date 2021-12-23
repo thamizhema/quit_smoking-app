@@ -11,10 +11,10 @@ class ReasonForQuit extends StatelessWidget {
   final UserInfoController _userInfoController = Get.find<UserInfoController>();
 
   void selectReason(reason) {
-    if (_userInfoController.quitReason.value.contains(reason)) {
-      _userInfoController.removeQuitReason(reason);
+    if (_userInfoController.quitReasons.value.contains(reason)) {
+      _userInfoController.removequitReasons(reason);
     } else {
-      _userInfoController.setQuitReason(reason);
+      _userInfoController.setquitReasons(reason);
     }
   }
 
@@ -55,7 +55,7 @@ class ReasonForQuit extends StatelessWidget {
                   reasons.length,
                   (index) => CustomActionChip(
                     value: reasons[index],
-                    isSelected: _userInfoController.quitReason.value
+                    isSelected: _userInfoController.quitReasons.value
                         .contains(reasons[index]),
                     onPressed: () {
                       selectReason(reasons[index]);
