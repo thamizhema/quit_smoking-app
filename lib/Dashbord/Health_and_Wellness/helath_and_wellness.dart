@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quit_smoking/Common/explore_button.dart';
 import 'package:quit_smoking/Dashbord/Health_and_Wellness/all_health_and_wellness.dart';
-import 'package:quit_smoking/Dashbord/Health_and_Wellness/wisdoms.dart';
+import 'package:quit_smoking/Dashbord/Health_and_Wellness/health_and_wellness_navigation.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HealthAndWellness extends StatelessWidget {

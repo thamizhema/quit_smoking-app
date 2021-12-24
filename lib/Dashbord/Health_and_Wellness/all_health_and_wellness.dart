@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quit_smoking/Dashbord/Health_and_Wellness/wisdoms.dart';
+import 'package:quit_smoking/Dashbord/Health_and_Wellness/health_and_wellness_navigation.dart';
 
 class AllHealthAndWellness extends StatelessWidget {
   AllHealthAndWellness({Key? key}) : super(key: key);

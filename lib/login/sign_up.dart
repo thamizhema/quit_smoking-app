@@ -41,6 +41,7 @@ class SignUp extends StatelessWidget {
       getStorage.write("userInfo", updateUserInfo);
 
       final checkUser = await _firestore.collection("User").get();
+
       Map getUserData = {};
       bool isCompleted = false;
       print('chhhhhhhhhhhh ${checkUser.docs.isNotEmpty}');

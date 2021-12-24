@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quit_smoking/Dashbord/Health_and_Wellness/Breathe/breathe.dart';
 import 'package:quit_smoking/Dashbord/Health_and_Wellness/health_and_wellness_itme.dart';
 import 'package:quit_smoking/Dashbord/Health_and_Wellness/random_cards.dart';
 import 'package:quit_smoking/qc_getx_controller/health_and_wellness_contreller.dart';
@@ -41,14 +42,7 @@ List<Widget> items = [
     imagePath: 'images/health_wellness/breath.jpg',
     title: 'Breathe',
     onPressed: () {
-      // Get.to(
-      //   RandomCards(
-      //     imageList: wisdomList,
-      //     pageController: _wellnessController.wisdomPageController.value,
-      //     setIndexValueForSession: _wellnessController.getWisdomIndex(),
-      //     storageKey: 'wisdom',
-      //   ),
-      // );
+      Get.to(const Breathe());
     },
   ),
   HealthAndWellnessItem(

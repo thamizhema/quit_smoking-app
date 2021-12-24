@@ -24,11 +24,11 @@ class _DashboardState extends State<Dashboard> {
   final AllInfoController _allInfoController = Get.find<AllInfoController>();
 
   List<Widget> dashboardItems = [
-    HealthAndWellness(),
     SmokeFreeTime(),
     HealthImprovement(),
     MoneySaved(),
     GuidedMeditation(),
+    HealthAndWellness(),
   ];
 
   @override
