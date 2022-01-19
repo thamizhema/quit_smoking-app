@@ -38,7 +38,8 @@ class SmokeFreeTime extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (timing['years'] >= 1) buildTimeWithText('years'),
-            if (timing['months'] >= 1) buildTimeWithText('months'),
+            if (timing['years'] >= 1 || timing['months'] >= 1)
+              buildTimeWithText('months'),
             if (timing['days'] >= 1 || timing['months'] >= 1)
               buildTimeWithText('days'),
             if (timing['years'] <= 0) buildTimeWithText('hours'),
@@ -79,7 +80,8 @@ class SmokeFreeTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(timing);
+    print("smoke_free_time.dart ====== $timing");
+
     return Container(
       height: 200,
       color: Vx.green300,

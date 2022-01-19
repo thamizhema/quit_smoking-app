@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:quit_smoking/Common/colors.dart';
 
 import 'package:quit_smoking/bottom%20navigation%20bar/bottom_navigation_bar.dart';
+import 'package:quit_smoking/qc_getx_controller/achievement_controller.dart';
 
 import 'package:quit_smoking/qc_getx_controller/all_info_controller.dart';
 import 'package:quit_smoking/qc_getx_controller/bottom_navigation_bar_controller.dart';
@@ -25,6 +26,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(MissionController());
+  Get.put(AchievementController());
   Get.put(UserInfoController());
   Get.put(BottomNavigationBarController());
   Get.put(JournalController());
@@ -50,8 +52,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _userInfoController.getSessionInfo();
-    print('**************** $isLogged');
-    print('**************** $userInfo');
+    print('********main.dart******** $isLogged');
+    print('********main.dart******** $userInfo');
     if (!isLogged) {
       userData.write('screenTime', 0);
     }

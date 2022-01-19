@@ -10,7 +10,10 @@ class AllInfoController extends GetxController {
   final quitDates = DateTime.now().obs;
   final userInfo = {}.obs;
   final totalMinutes = 0.obs;
+  final totalHours = 0.obs;
   final totalDays = 0.obs;
+  final totalMonths = 0.obs;
+  final totalYears = 0.obs;
   final totalCigarette = 0.0.obs;
   final totalMoneySaved = 0.0.obs;
   final totalInfo = {}.obs;
@@ -27,6 +30,10 @@ class AllInfoController extends GetxController {
   updateFunction() {
     totalMinutes(quitDates.value.difference(DateTime.now()).inMinutes.abs());
     totalDays(quitDates.value.difference(DateTime.now()).inDays.abs());
+    totalHours(quitDates.value.difference(DateTime.now()).inHours.abs());
+    totalMonths(quitDates.value.difference(DateTime.now()).inDays.abs() ~/ 30);
+    totalYears(quitDates.value.difference(DateTime.now()).inDays.abs() ~/ 365);
+
     totalCigarette((userInfo['dayOfCFags'] / 1440) * totalMinutes.value);
     totalMoneySaved((userInfo['priceOfPack'] / userInfo['packOfFags']) *
         totalCigarette.value);
