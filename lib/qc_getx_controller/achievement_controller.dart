@@ -5,7 +5,55 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class AchievementController extends GetxController {
-  final achievement = [].obs;
+  /// un comment when api hosted
+  // final achievement = [].obs;
+
+  ///sample api
+  final achievement = [
+    {
+      "title": "10 Minutes smoke free",
+      "isCompleted": false,
+      "valueType": "minutes",
+      "value": 10,
+      "id": 1
+    },
+    {
+      "title": "60 Minutes smoke free",
+      "isCompleted": false,
+      "valueType": "minutes",
+      "value": 60,
+      "id": 2
+    },
+    {
+      "title": "5 Hours smoke free",
+      "isCompleted": false,
+      "valueType": "hours",
+      "value": 5,
+      "id": 3
+    },
+    {
+      "title": "400 Day smoke free",
+      "isCompleted": false,
+      "valueType": "days",
+      "value": 400,
+      "id": 4
+    },
+    {
+      "title": "14 months smoke free",
+      "isCompleted": false,
+      "valueType": "months",
+      "value": 14,
+      "id": 5
+    },
+    {
+      "title": "2 year smoke free",
+      "isCompleted": false,
+      "valueType": "years",
+      "value": 2,
+      "id": 6
+    }
+  ].obs;
+  final allAchievementWidgets = [].obs;
   final getStorage = GetStorage();
   getAchievementData() async {
     try {
@@ -33,6 +81,8 @@ class AchievementController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getAchievementData();
+
+    /// un comment when api hosted
+    // getAchievementData();
   }
 }

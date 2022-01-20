@@ -40,3 +40,51 @@ class AchievementWidget extends StatelessWidget {
     );
   }
 }
+
+class SeeAllAchievements extends StatelessWidget {
+  SeeAllAchievements({
+    Key? key,
+    this.title = "Achievement title",
+    this.isAchieve = false,
+  }) : super(key: key);
+  bool isAchieve = true;
+  String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(20),
+      height: context.screenWidth / 1.2,
+      width: context.screenWidth / 2,
+      decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)]),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          title.text
+              .align(TextAlign.center)
+              .makeCentered()
+              .marginSymmetric(vertical: 15),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                  Colors.white, isAchieve ? BlendMode.darken : BlendMode.hue),
+              child: Image.asset(
+                'images/achivement.png',
+                width: 100,
+              ),
+            ),
+          ),
+          'About achievement'
+              .text
+              .align(TextAlign.center)
+              .makeCentered()
+              .marginSymmetric(vertical: 15),
+        ],
+      ),
+    );
+  }
+}
