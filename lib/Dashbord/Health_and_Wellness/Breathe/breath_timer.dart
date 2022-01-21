@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quit_smoking/Common/colors.dart';
+import 'package:rive/rive.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class BreatheTimer extends StatefulWidget {
@@ -13,79 +15,98 @@ class BreatheTimer extends StatefulWidget {
 }
 
 class _BreatheTimerState extends State<BreatheTimer> {
-  double width = 100;
-  double height = 100;
+  Artboard? _artboard;
+  SMIInput<bool>? isPlay;
+
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    rootBundle.load('assets/animations/box_breathing.riv').then((data) async {
+      final file = RiveFile.import(data);
+      final board = file.mainArtboard;
+      var controller = StateMachineController.fromArtboard(board, 'breathe');
+      if (controller != null) {
+        board.addController(controller);
+        isPlay = controller.findInput('start');
+        setState(() {
+          isPlay?.value = false;
+          _artboard = board;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffE4FDFF),
       appBar: AppBar(
+        backgroundColor: Color(0xff1F81AC),
         centerTitle: true,
         title: 'Breathe'.text.make(),
       ),
       body: SafeArea(
-          child: Stack(
-        alignment: Alignment.center,
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          const SizedBox(),
+          // '00:10'.text.xl2.coolGray400.makeCentered(),
           Center(
-            child: Container(
-              width: context.screenWidth / 1.5,
-              height: context.screenWidth / 1.5,
-              decoration: BoxDecoration(
-                color: Color(0xffD0FFE3),
-                borderRadius: BorderRadius.circular(300),
-              ),
-            ),
+            child: _artboard == null
+                ? const SizedBox()
+                : Container(
+                    width: context.screenWidth / 1,
+                    height: context.screenWidth / 1,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(300),
+                    ),
+                    child: Rive(artboard: _artboard!),
+                  ),
           ),
-          Center(
-            child: Container(
-              width: 150,
-              height: 150,
-              decoration: BoxDecoration(
-                color: Color(0xffA8F9C9),
-                borderRadius: BorderRadius.circular(300),
-              ),
-              child: '3'.text.xl6.color(OurColors.mainColor).makeCentered(),
-            ),
-          ),
-          '00:10'
-              .text
-              .xl2
-              .coolGray400
-              .makeCentered()
-              .positioned(top: context.screenHeight / 4.5),
-          'Breathe In'
-              .text
-              .xl2
-              .coolGray400
-              .makeCentered()
-              .positioned(bottom: context.screenHeight / 4.5),
-          Positioned(
-            bottom: 30,
-            child: ClipRRect(
+          // Center(
+          //   child: Container(
+          //     width: 150,
+          //     height: 150,
+          //     decoration: BoxDecoration(
+          //       color: Color(0xffA8F9C9),
+          //       borderRadius: BorderRadius.circular(300),
+          //     ),
+          //     child: '3'.text.xl6.color(OurColors.mainColor).makeCentered(),
+          //   ),
+          // ),
+
+          // 'Breathe In'.text.xl2.coolGray400.makeCentered(),
+          if (isPlay != null)
+            ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Material(
-                color: OurColors.mainColor,
+                color: Color(0xff1F81AC),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  height: 50,
                   width: 200,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
-                        FontAwesomeIcons.redo,
+                      Icon(
+                        isPlay!.value
+                            ? FontAwesomeIcons.stop
+                            : FontAwesomeIcons.play,
                         color: Colors.white,
                       ),
                       const SizedBox(
                         width: 10,
                       ),
-                      'Repeat'.text.white.xl2.make(),
+                      (isPlay!.value ? "STOP" : "Play").text.white.xl2.make(),
                     ],
-                  ).onInkTap(() {}),
+                  ).onInkTap(() {
+                    setState(() {
+                      isPlay!.value = !isPlay!.value;
+                    });
+                  }),
                 ),
               ),
-            ),
-          )
+            )
         ],
       )),
     );

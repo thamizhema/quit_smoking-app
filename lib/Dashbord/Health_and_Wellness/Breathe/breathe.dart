@@ -41,7 +41,7 @@ class Breathe extends StatelessWidget {
                     subtitle: 'Equal Breathing helps you to relax and focus.',
                     color: const Color(0xffE4FDFF),
                     onPressed: () {
-                      Get.to(BreatheTimer());
+                      Get.to(const BreatheTimer());
                     },
                   ),
                 ],
